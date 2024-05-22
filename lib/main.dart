@@ -62,7 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(child: Text("Hi, there"),),
+      drawer: Drawer(
+        child: Text("Hi, there"),
+      ),
       appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(widget.title),
@@ -74,52 +76,39 @@ class _MyHomePageState extends State<MyHomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            ElevatedButton(
-                onPressed: () {
-                  setState(() {});
-                },
-                child: const Text("Button 1")),
-            SizedBox(height: 20),
-            ElevatedButton(
-                onPressed: () {
-                  setState(() {});
-                },
-                child: const Text("Button 2")),
-            SizedBox(height: 20),
-            ElevatedButton(
-                onPressed: () {
-                  setState(() {});
-                },
-                child: const Text("Button 3")),
-            SizedBox(height: 20),
-            ElevatedButton(
-                onPressed: () {
-                  setState(() {});
-                },
-                child: const Text("Button 4")),
-            SizedBox(height: 20),
-            ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (_passController.value.text == "QWERTY123") {
-                      pngUrl = "images/a_light_bulb.png";
-                    } else {
-                      pngUrl = "images/stop_sign.png";
-                    }
-                  });
-                },
-                child: const Text("Login")),
+            Stack(alignment: AlignmentDirectional.topEnd, children: <Widget>[
+              Image.asset(
+                'images/algonquin.jpeg',
+                height: 200,
+              ),
+              Text(
+                "Algonquin College",
+                style: TextStyle(fontSize: 30.0, backgroundColor: Colors.greenAccent),
+              )
+            ]),
+            Text(
+              "One-pan skillet Cookie",
+              style: TextStyle(fontSize: 20.0,backgroundColor: Colors.green),
+            ),
+            Text("Ingredient List", style: TextStyle(fontSize: 20.0,backgroundColor: Colors.lime)),
+            Row(
+              children: [
+                Icon(Icons.start),
+                Text("1 stick [8 TBSP] Unsalted butter")
+              ],
+            )
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(icon: Icon(Icons.camera),label:'Camera'),
-        BottomNavigationBarItem(icon: Icon(Icons.add_call), label:'Phone'),
-      ],onTap: (btnIndex){
-        print(btnIndex)
-      },),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.camera), label: 'Camera'),
+          BottomNavigationBarItem(icon: Icon(Icons.add_call), label: 'Phone'),
+        ],
+        onTap: (btnIndex) {},
+      ),
     );
   }
 }

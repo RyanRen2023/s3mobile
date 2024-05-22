@@ -63,6 +63,7 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
+    - images/algonquin.jpeg
     - images/a_light_bulb.png
     - images/question_mark.png
     - images/stop_sign.png
