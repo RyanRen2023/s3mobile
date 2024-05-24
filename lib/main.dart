@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.greenAccent),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Mobile Lab2 Home Page'),
+      home: const MyHomePage(title: 'Mobile Lab3 Food Galley'),
     );
   }
 }
@@ -59,48 +59,315 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+  var pngHight = 80.0;
+  var pngWidth = 80.0;
+  var meat_array = [
+    "images/Beef.png",
+    "images/Chicken.png",
+    "images/Pork.png",
+    "images/Seafood.png"
+  ];
+  var meat_array_name = ["BEEF", "CHICKEN", "PORK", "SEAFOOD"];
+
+  var course_array = [
+    "images/MainDishes.png",
+    "images/Salad.png",
+    "images/SideDishes.png",
+    "images/Crockpot.png"
+  ];
+  var course_array_name = ["Main Dishes", "Salad Recipes", "Side dishes", "Crockpot"];
+
+  var dessert_array = [
+    "images/MainDishes.png",
+    "images/Salad.png",
+    "images/SideDishes.png",
+    "images/Crockpot.png"
+  ];
+  var dessert_array_name = ["Main Dishes", "Salad Recipes", "Side dishes", "Crockpot"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Text("Hi, there"),
-      ),
       appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(widget.title),
-          actions: [
-            OutlinedButton(onPressed: () {}, child: Text("Button1")),
-            OutlinedButton(onPressed: () {}, child: Text("Button2"))
-          ]),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+      ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Stack(alignment: AlignmentDirectional.topEnd, children: <Widget>[
-              Image.asset(
-                'images/algonquin.jpeg',
-                height: 200,
+        child: Container(
+            width: 500,
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.green, width: 4.0)),
+
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "BROWSE CATEGORIES",
+                    style: TextStyle(fontSize: 30.0),
+                  ),
+                  Text(
+                    "No sure about exactly which recipe you're looking for? Do a search, or dive into out most popular categories.",
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                  Text(
+                    "BY MEAT",
+                    style: TextStyle(fontSize: 25.0),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          ClipOval(
+                            child: Image.asset(
+                              meat_array[0],
+                              fit: BoxFit.cover,
+                              width: pngWidth,
+                              height: pngHight,
+                            ),
+                          ),
+                          Text(
+                            meat_array_name[0],
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 15.0),
+                          ),
+                        ],
+                      ),
+                      Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          ClipOval(
+                            child: Image.asset(
+                              meat_array[1],
+                              fit: BoxFit.cover,
+                              width: pngWidth,
+                              height: pngHight,
+                            ),
+                          ),
+                          Text(
+                            meat_array_name[1],
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 15.0),
+                          ),
+                        ],
+                      ),
+                      Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          ClipOval(
+                            child: Image.asset(
+                              meat_array[2],
+                              fit: BoxFit.cover,
+                              width: pngWidth,
+                              height: pngHight,
+                            ),
+                          ),
+                          Text(
+                            meat_array_name[2],
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 15.0),
+                          ),
+                        ],
+                      ),
+                      Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          ClipOval(
+                            child: Image.asset(
+                              meat_array[3],
+                              fit: BoxFit.cover,
+                              width: pngWidth,
+                              height: pngHight,
+                            ),
+                          ),
+                          Text(
+                            meat_array_name[3],
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 15.0),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "BY COURSE",
+                    style: TextStyle(fontSize: 25.0),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          ClipOval(
+                            child: Image.asset(
+                              course_array[0],
+                              fit: BoxFit.cover,
+                              width: pngWidth,
+                              height: pngHight,
+                            ),
+                          ),
+                          Text(
+                            course_array_name[0],
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 15.0,fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          ClipOval(
+                            child: Image.asset(
+                              course_array[1],
+                              fit: BoxFit.cover,
+                              width: pngWidth,
+                              height: pngHight,
+                            ),
+                          ),
+                          Text(
+                            course_array_name[1],
+                            style:
+                            TextStyle(color: Colors.black, fontSize: 15.0,fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          ClipOval(
+                            child: Image.asset(
+                              course_array[2],
+                              fit: BoxFit.cover,
+                              width: pngWidth,
+                              height: pngHight,
+                            ),
+                          ),
+                          Text(
+                            course_array_name[2],
+                            style:
+                            TextStyle(color: Colors.black, fontSize: 15.0,fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          ClipOval(
+                            child: Image.asset(
+                              course_array[3],
+                              fit: BoxFit.cover,
+                              width: pngWidth,
+                              height: pngHight,
+                            ),
+                          ),
+                          Text(
+                            course_array_name[3],
+                            style:
+                            TextStyle(color: Colors.black, fontSize: 15.0,fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "BY DESSERT",
+                    style: TextStyle(fontSize: 25.0),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          ClipOval(
+                            child: Image.asset(
+                              meat_array[0],
+                              fit: BoxFit.cover,
+                              width: pngWidth,
+                              height: pngHight,
+                            ),
+                          ),
+                          Text(
+                            meat_array_name[0],
+                            style:
+                            TextStyle(color: Colors.black, fontSize: 15.0,fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          ClipOval(
+                            child: Image.asset(
+                              meat_array[1],
+                              fit: BoxFit.cover,
+                              width: pngWidth,
+                              height: pngHight,
+                            ),
+                          ),
+                          Text(
+                            meat_array_name[1],
+                            style:
+                            TextStyle(color: Colors.black, fontSize: 15.0,fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          ClipOval(
+                            child: Image.asset(
+                              meat_array[2],
+                              fit: BoxFit.cover,
+                              width: pngWidth,
+                              height: pngHight,
+                            ),
+                          ),
+                          Text(
+                            meat_array_name[2],
+                            style:
+                            TextStyle(color: Colors.black, fontSize: 15.0,fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          ClipOval(
+                            child: Image.asset(
+                              meat_array[3],
+                              fit: BoxFit.cover,
+                              width: pngWidth,
+                              height: pngHight,
+                            ),
+                          ),
+                          Text(
+                            meat_array_name[3],
+                            style:
+                            TextStyle(color: Colors.black, fontSize: 15.0,fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
               ),
-              Text(
-                "Algonquin College",
-                style: TextStyle(fontSize: 30.0, backgroundColor: Colors.greenAccent),
-              )
-            ]),
-            Text(
-              "One-pan skillet Cookie",
-              style: TextStyle(fontSize: 20.0,backgroundColor: Colors.green),
-            ),
-            Text("Ingredient List", style: TextStyle(fontSize: 20.0,backgroundColor: Colors.lime)),
-            Row(
-              children: [
-                Icon(Icons.start),
-                Text("1 stick [8 TBSP] Unsalted butter")
-              ],
-            )
-          ],
-        ),
+            )),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
