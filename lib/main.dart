@@ -108,6 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (isNotEmpty(name) && isNotEmpty(pass)) {
       setState(() {
+        _nameController.text = name!;
         _passController.text = pass!;
       });
       showSnackBarWithClearAction("Load User Data Successfully!");

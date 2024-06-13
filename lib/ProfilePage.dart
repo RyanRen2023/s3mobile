@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
+// import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 import 'DataRepository.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -22,7 +22,7 @@ class ProfilePageState extends State<ProfilePage> {
   final double padding_Size = 16.0;
   final double iconSpacing = 8.0;
 
-  static final prefs = EncryptedSharedPreferences();
+  // static final prefs = EncryptedSharedPreferences();
   final String _keyName = "userName";
   final String _firstName = "firstName";
   final String _lastName = "lastName";
@@ -61,28 +61,24 @@ class ProfilePageState extends State<ProfilePage> {
   }
 
   void loadData() {
-    prefs.getString(_firstName).then((value) {
-      if (value.isNotEmpty){
-        _firstNameController.text = value;
-      }
-    });
-    prefs.getString(_lastName).then((value) {
-      _lastNameController.text = value;
-    });
-    prefs.getString(_phone).then((value){
-      _phoneController.text = value;
-    });
-    prefs.getString(_email).then((value){
-      _emailController.text = value;
-    });
-
+    DataRepository.loadData();
+    _firstNameController.text = DataRepository.firstName;
+    _lastNameController.text = DataRepository.lastName;
+    _phoneController.text = DataRepository.phone;
+    _emailController.text = DataRepository.email;
   }
 
   void savaData() {
-    prefs.setString(_firstName, _firstNameController.value.text);
-    prefs.setString(_lastName, _lastNameController.value.text);
-    prefs.setString(_phone, _phoneController.value.text);
-    prefs.setString(_email, _emailController.value.text);
+
+    // prefs.setString(_firstName, _firstNameController.value.text);
+    // prefs.setString(_lastName, _lastNameController.value.text);
+    // prefs.setString(_phone, _phoneController.value.text);
+    // prefs.setString(_email, _emailController.value.text);
+    DataRepository.firstName = _firstNameController.value.text;
+    DataRepository.lastName = _lastNameController.value.text;
+    DataRepository.phone = _phoneController.value.text;
+    DataRepository.email = _emailController.value.text;
+    DataRepository.saveData();
   }
 
   void showSnackBar(String message) {
@@ -162,7 +158,7 @@ class ProfilePageState extends State<ProfilePage> {
               SizedBox(height: sizedBox_Height),
               Row(
                 children: [
-                  Expanded(
+                  Flexible(
                     child: TextField(
                       controller: _emailController,
                       decoration: const InputDecoration(
