@@ -4,10 +4,12 @@ This week, we learned how to use the ElevatedButton, Image, Checkbox, Switch, an
 For this week's lab, demonstrate your understanding of the material (6 marks):
 
 1. Create a login page with two text fields. One is for "Login name" and the one below it for "password". To make the password field not show what is typed, use the parameter: `obscureText: true` in the TextField (2 marks).
+   ![image](https://github.com/RyanRen2023/s3mobile/assets/148353217/3d8eee57-31ca-4276-a8e0-a91d231f173b)
 
-2. Add an ElevatedButton below the two TextFields with the word "Login". When the user presses the button, get the string that was typed in the password field (1 mark).
 
-3. Below the Login button, add an Image that is 300 x 300 that originally is a Question Mark (3 marks):
+3. Add an ElevatedButton below the two TextFields with the word "Login". When the user presses the button, get the string that was typed in the password field (1 mark).
+
+4. Below the Login button, add an Image that is 300 x 300 that originally is a Question Mark (3 marks):
     - ![Question Mark](https://www.flaticon.com/free-icon/question-mark_5726470).
     
    When the user clicks on the login button, read the string that was typed in the password. If the string is "QWERTY123", then change the image source to be a light bulb:
