@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
+import 'package:lab_two/TodoListPage.dart';
 import 'ProfilePage.dart';
 import 'DataRepository.dart';
 
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Week 5 Lab',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -22,7 +24,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         '/login': (context) => const MyHomePage(title: 'Login'),
-        '/profile': (context) => const ProfilePage(title: "My Profile")
+        '/profile': (context) => const ProfilePage(title: "My Profile"),
+        '/todoList': (context) => const TodoListPage(title: "Todo List")
       },
     );
   }
@@ -59,7 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       initDataFromEncryptSharedPrefs();
     });
-
   }
 
   @override
@@ -166,8 +168,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void navigateToProfile() {
     var loginName = _nameController.value.text;
-    DataRepository.loginName = loginName==null?"":loginName;
+    DataRepository.loginName = loginName;
     Navigator.of(context).pushNamed("/profile");
+  }
+
+  void navigateTodoList() {
+    var loginName = _nameController.value.text;
+    DataRepository.loginName = loginName;
+    Navigator.of(context).pushNamed("/todoList");
   }
 
   void showSnackBar(String message) {
@@ -222,13 +230,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   var name = _nameController.value.text;
                   var pass = _passController.value.text;
-                  if (isNotEmpty(name) && isNotEmpty(pass) && pass == _expectedPass) {
+                  if (isNotEmpty(name) &&
+                      isNotEmpty(pass) &&
+                      pass == _expectedPass) {
                     changeImages(true);
                     showSaveDialogPrompt();
                   } else {
                     changeImages(false);
                     setState(() {
-                      _message = 'Login name or password should not be empty or password is not correct.';
+                      _message =
+                          'Login name or password should not be empty or password is not correct.';
                     });
                     _focusNode.requestFocus();
                   }
@@ -237,7 +248,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(height: 20),
               Text(_message),
-              Image.asset(_pngUrl,width: 50,height: 50,)
+              Image.asset(
+                _pngUrl,
+                width: 50,
+                height: 50,
+              )
             ],
           ),
         ),

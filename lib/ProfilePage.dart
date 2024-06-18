@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
 import 'package:url_launcher/url_launcher.dart';
-// import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 import 'DataRepository.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -70,10 +68,6 @@ class ProfilePageState extends State<ProfilePage> {
 
   void savaData() {
 
-    // prefs.setString(_firstName, _firstNameController.value.text);
-    // prefs.setString(_lastName, _lastNameController.value.text);
-    // prefs.setString(_phone, _phoneController.value.text);
-    // prefs.setString(_email, _emailController.value.text);
     DataRepository.firstName = _firstNameController.value.text;
     DataRepository.lastName = _lastNameController.value.text;
     DataRepository.phone = _phoneController.value.text;
@@ -91,7 +85,13 @@ class ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        actions: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/todoList");
+              },
+              child: const Text("Go to Todo"))
+        ],
       ),
       body: Center(
         child: Padding(
