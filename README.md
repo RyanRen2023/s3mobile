@@ -1,16 +1,29 @@
-# lab_two
+# Mobile Lab Practice
 
-A new Flutter project for Lab2
+## Week 3 Lab
+[Week 3 Lab Repository](https://github.com/RyanRen2023/s3mobile/tree/Week3-Lab)
 
-## Getting Started
+Create a login page with two text fields. One is for "Login name" and the one below it for "password".
 
-This project is a starting point for a Flutter application.
+## Week 4 Lab
+[Week 4 Lab Repository](https://github.com/RyanRen2023/s3mobile/tree/Week4-Lab)
 
-A few resources to get you started if this is your first Flutter project:
+Layouts by recreating this image on a page:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Week 5 Lab
+[Week 5 Lab Repository](https://github.com/RyanRen2023/s3mobile/tree/Week5-Lab)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Creating a second page for your app:
+Add a second page to your app called ProfilePage. Then when you use your login page, and your password is correct, navigate to your new page.
+
+## Week 6 Lab
+[Week 6 Lab Repository](https://github.com/RyanRen2023/s3mobile/tree/Week6-Lab)
+
+ListViews:
+Create a "To Do" list application that lets users add items to a list. The user can type into a TextField and click "Add" which should then make the item in the List.
+
+## Week 8 Lab
+[Week 8 Lab Repository](https://github.com/RyanRen2023/s3mobile/tree/Week8-Lab)
+
+Using Database with Flutter:
+This project demonstrates the use of a SQLite database in a Flutter application using the Floor package. The application allows users to manage a list of Todo items with the ability to add, view, and delete items. The data is securely stored using encrypted shared preferences.
