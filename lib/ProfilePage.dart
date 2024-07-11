@@ -1,15 +1,42 @@
+/*
+ * Student Name: Xihai Ren
+ * Student No: 041127486
+ * Professor: Eric Torunski
+ * Due Date: 2024/07/12
+ * Description: Lab 7 - Profile page using encrypted shared preferences
+ */
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'DataRepository.dart';
 
+/**
+ * The ProfilePage class represents the profile screen of the application.
+ * It manages the state of the profile form and handles user data loading and saving.
+ *
+ * @version 1.0.0
+ * @since Dart 2.12
+ *
+ * @author Xihai Ren
+ */
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key, required this.title});
 
   final String title;
+
   @override
   State<ProfilePage> createState() => ProfilePageState();
 }
 
+/**
+ * The ProfilePageState class contains the logic for the ProfilePage widget,
+ * including form validation, data storage, and interaction with other apps.
+ *
+ * @version 1.0.0
+ * @since Dart 2.12
+ *
+ * @author Xihai Ren
+ */
 class ProfilePageState extends State<ProfilePage> {
   late TextEditingController _firstNameController;
   late TextEditingController _lastNameController;
@@ -20,7 +47,6 @@ class ProfilePageState extends State<ProfilePage> {
   final double padding_Size = 16.0;
   final double iconSpacing = 8.0;
 
-  // static final prefs = EncryptedSharedPreferences();
   final String _keyName = "userName";
   final String _firstName = "firstName";
   final String _lastName = "lastName";
@@ -52,12 +78,20 @@ class ProfilePageState extends State<ProfilePage> {
     super.dispose();
   }
 
+  /**
+   * Launches the specified URL using the default application.
+   *
+   * @param _url The URL to launch.
+   */
   Future<void> _launchUrl(_url) async {
     if (!await launchUrl(_url)) {
       throw Exception('Could not launch $_url');
     }
   }
 
+  /**
+   * Loads user data from the DataRepository and updates the form fields.
+   */
   void loadData() {
     DataRepository.loadData();
     _firstNameController.text = DataRepository.firstName;
@@ -66,8 +100,10 @@ class ProfilePageState extends State<ProfilePage> {
     _emailController.text = DataRepository.email;
   }
 
+  /**
+   * Saves the current form data to the DataRepository.
+   */
   void savaData() {
-
     DataRepository.firstName = _firstNameController.value.text;
     DataRepository.lastName = _lastNameController.value.text;
     DataRepository.phone = _phoneController.value.text;
@@ -75,6 +111,11 @@ class ProfilePageState extends State<ProfilePage> {
     DataRepository.saveData();
   }
 
+  /**
+   * Displays a snackbar with the provided message.
+   *
+   * @param message The message to display.
+   */
   void showSnackBar(String message) {
     var snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -134,11 +175,11 @@ class ProfilePageState extends State<ProfilePage> {
                     icon: Icon(Icons.phone),
                     onPressed: () {
                       var phone = _phoneController.value.text;
-                      Uri emailLaunchUri = Uri(
+                      Uri phoneLaunchUri = Uri(
                         scheme: 'tel',
                         path: phone,
                       );
-                      _launchUrl(emailLaunchUri);
+                      _launchUrl(phoneLaunchUri);
                     },
                   ),
                   SizedBox(width: iconSpacing),
@@ -146,11 +187,11 @@ class ProfilePageState extends State<ProfilePage> {
                     icon: Icon(Icons.sms),
                     onPressed: () {
                       var phone = _phoneController.value.text;
-                      Uri emailLaunchUri = Uri(
+                      Uri smsLaunchUri = Uri(
                         scheme: 'sms',
                         path: phone,
                       );
-                      _launchUrl(emailLaunchUri);
+                      _launchUrl(smsLaunchUri);
                     },
                   ),
                 ],
@@ -170,34 +211,19 @@ class ProfilePageState extends State<ProfilePage> {
                   ),
                   SizedBox(width: iconSpacing),
                   IconButton(
-                      onPressed: () {
-                        var email = _emailController.value.text;
-                        Uri emailLaunchUri = Uri(
-                          scheme: 'mailto',
-                          path: email,
-                        );
-                        _launchUrl(emailLaunchUri);
-                      },
-                      icon: Icon(Icons.email)),
+                    onPressed: () {
+                      var email = _emailController.value.text;
+                      Uri emailLaunchUri = Uri(
+                        scheme: 'mailto',
+                        path: email,
+                      );
+                      _launchUrl(emailLaunchUri);
+                    },
+                    icon: Icon(Icons.email),
+                  ),
                 ],
               ),
               SizedBox(height: sizedBox_Height),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     ElevatedButton(
-              //       onPressed: () {},
-              //       child: const Text("Save"),
-              //     ),
-              //     SizedBox(width: iconSpacing),
-              //     ElevatedButton(
-              //       onPressed: () {
-              //         Navigator.pop(context);
-              //       },
-              //       child: const Text("Back"),
-              //     ),
-              //   ],
-              // ),
             ],
           ),
         ),
