@@ -1,4 +1,4 @@
-# Week 2 Lab
+# Week 3 Lab
 This week, we learned how to use the ElevatedButton, Image, Checkbox, Switch, and TextField.
 
 For this week's lab, demonstrate your understanding of the material (6 marks):
