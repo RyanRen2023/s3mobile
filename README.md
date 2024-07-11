@@ -1,30 +1,29 @@
-# Week 6 Lab: To Do List Application
+# Mobile Lab Practice
 
-## Objective
-Create a "To Do" list application that lets users add items to a list. The user can type into a TextField and click "Add" which should then make the item appear in the list.
+## Week 3 Lab
+[Week 3 Lab Repository](https://github.com/RyanRen2023/s3mobile/tree/Week3-Lab)
 
-## Branch Setup
-Create a new branch in your lab project for Week6. It can be a branch splitting off from the main or any other week because you will be creating a whole new page from what was done previously.
+Create a login page with two text fields. One is for "Login name" and the one below it for "password".
 
-## Requirements
-For this week's lab, you will demonstrate to your lab professor your knowledge of ListViews:
+## Week 4 Lab
+[Week 4 Lab Repository](https://github.com/RyanRen2023/s3mobile/tree/Week4-Lab)
 
-1. Create a "To Do" list application that lets users add items to a list.
-2. Each item should have the row number on the left side and the To Do item on the right.
-3. Add a Long-Press gesture detector which will bring up a dialog box asking if the user wants to delete the item. If the user selects "Yes", then the item will be removed from the list. If the user selects "No", then nothing should change.
-4. If the number of items is empty, then you should instead show a Text saying "There are no items in the list".
+Layouts by recreating this image on a page:
 
-## Implementation Details
-1. **Adding Items**:
-    - Typing an item in the TextField and clicking the "Add" button makes the item appear in the list.
-    - After inserting an item, the TextField is cleared so that the previous string is gone.
+## Week 5 Lab
+[Week 5 Lab Repository](https://github.com/RyanRen2023/s3mobile/tree/Week5-Lab)
 
-2. **Deleting Items**:
-    - If the user long-presses an item in the list, an AlertDialog appears asking if they want to delete the item.
-    - Selecting "Yes" from the AlertDialog removes the item from the list.
-    - Selecting "No" from the AlertDialog does not remove the item from the list.
+Creating a second page for your app:
+Add a second page to your app called ProfilePage. Then when you use your login page, and your password is correct, navigate to your new page.
 
-3. **Empty List Handling**:
-    - If the number of items is empty, then show a Text saying "There are no items in the list".
+## Week 6 Lab
+[Week 6 Lab Repository](https://github.com/RyanRen2023/s3mobile/tree/Week6-Lab)
 
+ListViews:
+Create a "To Do" list application that lets users add items to a list. The user can type into a TextField and click "Add" which should then make the item in the List.
 
+## Week 8 Lab
+[Week 8 Lab Repository](https://github.com/RyanRen2023/s3mobile/tree/Week8-Lab)
+
+Using Database with Flutter:
+This project demonstrates the use of a SQLite database in a Flutter application using the Floor package. The application allows users to manage a list of Todo items with the ability to add, view, and delete items. The data is securely stored using encrypted shared preferences.
