@@ -1,21 +1,53 @@
+/*
+ * Student Name: Xihai Ren
+ * Student No: 041127486
+ * Professor: Eric Torunski
+ * Due Date: 2024/07/12
+ * Description: Lab 7 - Main application for managing login and profile using encrypted shared preferences
+ */
+
+
 import 'package:flutter/material.dart';
 import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 import 'package:lab_two/TodoListPage.dart';
+import 'DatabaseOperator.dart';
 import 'ProfilePage.dart';
 import 'DataRepository.dart';
 
-void main() {
+/**
+ * The main entry point of the application.
+ * Initializes the database and runs the Flutter app.
+ *
+ * @version 1.0.0
+ * @since Dart 2.12
+ *
+ * @author Xihai Ren
+ */
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await DatabaseOperator.initDatabase();
   runApp(const MyApp());
 }
 
+/**
+ * The MyApp class sets up the main structure of the application,
+ * including theme settings and navigation routes.
+ *
+ * @version 1.0.0
+ * @since Dart 2.12
+ *
+ * @author Xihai Ren
+ */
 class MyApp extends StatelessWidget {
+
+
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Week 5 Lab',
+      title: 'Week 8 Lab',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -30,7 +62,15 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+/**
+ * The MyHomePage class represents the login screen of the application.
+ * It manages the state of the login form and handles user authentication.
+ *
+ * @version 1.0.0
+ * @since Dart 2.12
+ *
+ * @author Xihai Ren
+ */
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -40,6 +80,15 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+/**
+ * The _MyHomePageState class contains the logic for the MyHomePage widget,
+ * including form validation, data storage, and navigation.
+ *
+ * @version 1.0.0
+ * @since Dart 2.12
+ *
+ * @author Xihai Ren
+ */
 class _MyHomePageState extends State<MyHomePage> {
   late TextEditingController _nameController;
   late TextEditingController _passController;
@@ -71,6 +120,9 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+  /**
+   * Displays a dialog prompt asking the user if they want to save their login credentials.
+   */
   void showSaveDialogPrompt() {
     showDialog<String>(
       context: context,
@@ -94,6 +146,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  /**
+   * Changes the displayed image based on the provided state.
+   *
+   * @param state A boolean value indicating the new state.
+   */
   void changeImages(state) {
     setState(() {
       if (state) {
@@ -103,7 +160,9 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     });
   }
-
+  /**
+   * Initializes user data from EncryptedSharedPreferences and updates the form fields.
+   */
   void initDataFromEncryptSharedPrefs() async {
     String? name = await prefs.getString(_keyName);
     String? pass = await prefs.getString(_keyPass);
@@ -116,7 +175,9 @@ class _MyHomePageState extends State<MyHomePage> {
       showSnackBarWithClearAction("Load User Data Successfully!");
     }
   }
-
+  /**
+   * Saves the current form data to EncryptedSharedPreferences.
+   */
   void saveEncryptedSharedPreference() async {
     var name = _nameController.value.text;
     var pass = _passController.value.text;
@@ -126,19 +187,25 @@ class _MyHomePageState extends State<MyHomePage> {
     showSnackBar("Save successfully!");
     navigateToProfile();
   }
-
+  /**
+   * Clears the saved user data and navigates to the profile page.
+   */
   void clearDataInDialog() {
     hiddenDialog();
     clearEncryptedSharedPreference();
     showSnackBar("User data has been removed successfully!");
     navigateToProfile();
   }
-
+  /**
+   * Clears the saved user data and shows a snackbar message.
+   */
   void clearDataInSnack() {
     clearEncryptedSharedPreference();
     showSnackBar("User data has been removed successfully!");
   }
-
+  /**
+   * Clears the saved user data from EncryptedSharedPreferences.
+   */
   void clearEncryptedSharedPreference() {
     prefs.getString(_keyName).then((value) {
       if (isNotEmpty(value)) {
@@ -157,32 +224,51 @@ class _MyHomePageState extends State<MyHomePage> {
       _passController.text = "";
     });
   }
-
+  /**
+   * Checks if the provided string is not empty.
+   *
+   * @param value The string to check.
+   * @return True if the string is not null and not empty, false otherwise.
+   */
   bool isNotEmpty(String? value) {
     return value != null && value.isNotEmpty;
   }
-
+  /**
+   * Hides the currently displayed dialog.
+   */
   void hiddenDialog() {
     Navigator.pop(context);
   }
-
+  /**
+   * Navigates to the profile page and passes the login name.
+   */
   void navigateToProfile() {
     var loginName = _nameController.value.text;
     DataRepository.loginName = loginName;
     Navigator.of(context).pushNamed("/profile");
   }
-
+  /**
+   * Navigates to the todo list page and passes the login name.
+   */
   void navigateTodoList() {
     var loginName = _nameController.value.text;
     DataRepository.loginName = loginName;
     Navigator.of(context).pushNamed("/todoList");
   }
-
+  /**
+   * Displays a snackbar with the provided message.
+   *
+   * @param message The message to display.
+   */
   void showSnackBar(String message) {
     var snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
-
+  /**
+   * Displays a snackbar with the provided message and a clear action button.
+   *
+   * @param message The message to display.
+   */
   void showSnackBarWithClearAction(String message) {
     var snackBar = SnackBar(
       content: Text(message),
